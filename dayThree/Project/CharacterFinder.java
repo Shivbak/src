@@ -1,58 +1,72 @@
-package dayThree.Project;
-import java.awt.*;
-import javax.swing.*;
+package charFinder;
 
-/**
- * Created by student on 29-Jun-16.
- */
-public class CharacterFinder {
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-    JFrame mainFrame;
-    JPanel panel;
-    JLabel labelText,labelChar;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
+public class charcterFinder implements ActionListener{
+	
+	JLabel labelText,labelChar;
     JTextField Ch;
     JTextArea text;
 
-    public CharacterFinder()
-    {
-        mainFrame = new JFrame("Character Finder");
-        mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        mainFrame.setSize(1000,200);
-        mainFrame.setResizable(true);
-        mainFrame.setLayout(new FlowLayout());
-        mainFrame.setLocationRelativeTo(null);
+	public void screen()
+	{
+		JFrame content = new JFrame("Character Finder");
+		content.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		content.setSize(1000, 200);
+		content.setResizable(true);
+		content.setLayout(new FlowLayout());
+		content.setLocationRelativeTo(null);
+		
+		JPanel panel = new JPanel();
+		panel.setSize(1000,200);
+		content.add(panel);
+		
+		 labelText = new JLabel("Enter text to Search:");
+	        panel.add(labelText);
 
-        panel = new JPanel();
-        panel.setSize(1000,200);
+	        text = new JTextArea(4,20);
+	        JScrollPane sp = new JScrollPane(text);
+	        panel.add(sp);
 
-        labelText = new JLabel("Enter Texts to be Searched:");
-        panel.add(labelText);
+	        labelChar = new JLabel("Enter a Character:");
+	        panel.add(labelChar);
 
-        text = new JTextArea(4,20);
-        JScrollPane sp = new JScrollPane(text);
-        panel.add(sp);
+	        Ch = new JTextField(5);
+	        panel.add(Ch);
 
-        labelChar = new JLabel("Enter a Character:");
-        panel.add(labelChar);
+	        content.add(panel);
+	        content.setVisible(true);
+	        
+	        Ch.addActionListener(this);
+	}
 
-        Ch = new JTextField(5);
-        panel.add(Ch);
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		String S = text.getText();
+		char C = Ch.getText().charAt(0); 
+		for(int i = 0 ; i < S.length(); i++)
+		{
+			if(S.charAt(i) == C)
+			{
+				count++;
+			}
+		}
+		
+		JOptionPane.showMessageDialog(null,"Char is" + count + "times");
+		
+	}
 
-        mainFrame.add(panel);
-        mainFrame.setVisible(true);
-        //panel.setBackground(Color.LIGHT_GRAY);
-
-        //Ch.addAncestorListener();
-
-
-    }
-
-    public void Finder ()
-    {
-
-    }
-
-    public static void main(String[] args){ new CharacterFinder();}
 }
-
-
