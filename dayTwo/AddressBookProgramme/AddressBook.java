@@ -12,10 +12,10 @@ public class AddressBook {
 
     int counter = 0;
 
-    public void addNewContact(String firstName, String lastName, Address address, String phoneNumber, String email)
+    public void addNewContact(Contact contact)
     {
 
-        contacts[counter + 1] = new Contact(new Person(firstName,lastName),address,phoneNumber,email);
+        contacts[counter + 1] =  contact;
         counter++;
     }
 

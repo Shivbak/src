@@ -1,5 +1,8 @@
 package dayTwo.AddressBookProgramme;
 
+import dayTwo.example.*;
+import dayTwo.example.Person;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -26,20 +29,23 @@ public class Programme {
                 Scanner scan = new Scanner(System.in);
                 choice = scan.nextInt();
                 System.out.println();
+                switch (choice)
+                {
+                    case 1:
+                        getDetails(inputScreen());
+                        break;
 
+                    case 2:
+                        editContact();
+
+                }
             }while (choice < 1 || choice > 5);
 
-            switch (choice)
-            {
-                case 1:
-                    getDetails();
 
-
-            }
 
     }
 
-    static void getDetails()
+    static Contact inputScreen()
     {
         String firstName,lastName,address,email,phoneNumber;
 
@@ -60,7 +66,16 @@ public class Programme {
         System.out.println("Enter Email : ");
         email = s.nextLine();
 
-        book.addNewContact(firstName,lastName,new Address(data[0],data[1],data[2],data[3]),phoneNumber,email);
+        Contact temp = new Contact(new Person(firstName,lastName),new Address(data[0],data[1],data[2],data[3]),phoneNumber,email);
+
+                return temp;
+    }
+
+    static void getDetails(Contact contact)
+    {
+
+
+        book.addNewContact(contact);
 
         for (Contact c : book.getContacts())
         if (c!= null)
@@ -68,5 +83,17 @@ public class Programme {
 
     }
 
+    static void editContact()
+    {
+        Scanner s = new Scanner(System.in);
+        String firstName;
+        System.out.println("Enter Contact First Name: ");
+        firstName = s.nextLine();
+
+
+        for (int i = 0; i< book.getContacts().length - 1; i++)
+            if(book.getContacts()[i].getPerson().getFirstName().compareToIgnoreCase(firstName) > 0)
+               book.getContacts()[i] = inputScreen();
+    }
 
 }
