@@ -1,4 +1,4 @@
-package charFinder;
+package dayThree.Project;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -13,7 +13,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-public class charcterFinder implements ActionListener{
+public class CharacterFinder implements ActionListener{
 	
 	JLabel labelText,labelChar;
     JTextField Ch;
@@ -55,8 +55,8 @@ public class charcterFinder implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		int count = 0;
-		String S = text.getText();
-		char C = Ch.getText().charAt(0); 
+		String S = text.getText().toUpperCase();
+		char C = Ch.getText().toUpperCase().charAt(0);
 		for(int i = 0 ; i < S.length(); i++)
 		{
 			if(S.charAt(i) == C)
@@ -65,7 +65,7 @@ public class charcterFinder implements ActionListener{
 			}
 		}
 		
-		JOptionPane.showMessageDialog(null,"Char is" + count + "times");
+		JOptionPane.showMessageDialog(null,"Char is " + count + " times");
 		
 	}
 
